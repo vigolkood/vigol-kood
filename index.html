@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="کاتالوگ و فروشگاه آنلاین ویگل کود">
+<title>ویگل کود | فروشگاه و کاتالوگ</title>
+<style>
+:root{
+ --navy:#06264b;--green:#0aaa55;--green2:#087a3d;--light:#f4f7f6;
+ --text:#18324d;--muted:#6b7785;--white:#fff;--border:#e2e8e5;
+ --shadow:0 8px 28px rgba(6,38,75,.09);--danger:#c73535;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--light);color:var(--text)}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+.top{background:var(--navy);color:#fff;padding:9px 5%;display:flex;justify-content:space-between;gap:15px;align-items:center;font-size:13px}
+.nav{background:#fff;padding:13px 5%;display:flex;align-items:center;gap:22px;position:sticky;top:0;z-index:20;box-shadow:0 2px 12px #0001}
+.logo{font-size:24px;font-weight:900;color:var(--green);white-space:nowrap}
+.logo span{color:var(--navy)}
+.navlinks{display:flex;gap:18px;align-items:center}
+.navlinks button{border:0;background:none;color:var(--text);padding:7px 2px}
+.navlinks button:hover{color:var(--green)}
+.search{margin-right:auto;border:1px solid var(--border);border-radius:24px;padding:10px 16px;width:290px;outline:none;background:#fafcfc}
+.search:focus{border-color:var(--green)}
+.hero{max-width:1200px;margin:0 auto;background:linear-gradient(105deg,#07345c,#087746);color:#fff;padding:48px 42px;border-radius:0 0 26px 26px;display:flex;justify-content:space-between;align-items:center;gap:25px}
+.hero h1{font-size:36px;margin:0 0 12px}.hero p{margin:0 0 22px;line-height:1.9}
+.hero-icon{font-size:90px;opacity:.95}
+.wrap{max-width:1200px;margin:30px auto;padding:0 18px}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:16px}
+.section-head h1,.section-head h2{margin:0}
+.btn{border:0;border-radius:10px;padding:11px 19px;background:var(--green);color:#fff;font-weight:bold;transition:.2s}
+.btn:hover{background:var(--green2);transform:translateY(-1px)}
+.btn.alt{background:#fff;color:var(--navy);border:1px solid var(--border)}
+.btn.danger{background:var(--danger)}
+.btn.small{padding:8px 12px;font-size:13px}
+.cats{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0 28px}
+.cat{background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 16px;color:var(--text)}
+.cat.active,.cat:hover{border-color:var(--green);color:var(--green);background:#effbf4}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:18px}
+.card{background:#fff;border-radius:17px;padding:15px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:355px}
+.prodimg{height:175px;border-radius:13px;background:linear-gradient(145deg,#0d281e,#161616);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:22px;text-align:center;line-height:1.5}
+.card h3{margin:12px 0 5px}.muted{color:var(--muted);font-size:13px;line-height:1.8}
+.price{font-size:18px;font-weight:bold;color:var(--green);margin:10px 0}
+.card .actions{margin-top:auto;display:flex;gap:8px}
+.card .actions .btn{flex:1}
+.notice{background:#e9f8ef;padding:12px;border-radius:10px;color:#08733a;margin:15px 0}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.detail .image{min-height:430px;background:linear-gradient(145deg,#0c2b20,#111);border-radius:20px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:bold;text-align:center}
+.panel{background:#fff;border-radius:20px;padding:24px;box-shadow:var(--shadow)}
+.qty{display:flex;align-items:center;gap:12px;margin:18px 0}.qty button{width:38px;height:38px;border:1px solid var(--border);background:#fff;border-radius:8px}
+.option-row{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.analysis{width:100%;border-collapse:collapse;margin-top:18px}.analysis td{padding:10px;border-bottom:1px solid #eee}
+.empty{background:#fff;border-radius:16px;padding:50px;text-align:center;box-shadow:var(--shadow)}
+.checkout{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+.field{width:100%;padding:12px;border:1px solid var(--border);border-radius:9px;margin:7px 0;outline:none}
+.field:focus{border-color:var(--green)}
+textarea.field{min-height:100px;resize:vertical}
+.cart-float{position:fixed;left:20px;bottom:20px;background:var(--navy);color:#fff;border-radius:30px;padding:13px 20px;box-shadow:0 5px 20px #0003;z-index:15}
+.cart-row{display:grid;grid-template-columns:1fr auto auto;gap:15px;align-items:center;border-bottom:1px solid #eee;padding:15px 0}
+.total{font-size:20px;font-weight:bold;margin-top:18px}
+.footer{margin-top:55px;background:var(--navy);color:#fff;padding:35px 5%;text-align:center;line-height:2}
+.footer small{color:#dce8f3}
+.toast{position:fixed;right:20px;bottom:20px;background:#163d2b;color:#fff;padding:13px 18px;border-radius:10px;opacity:0;transform:translateY(15px);transition:.25s;z-index:50;pointer-events:none}
+.toast.show{opacity:1;transform:none}
+.noresult{background:#fff;padding:35px;border-radius:15px;text-align:center;grid-column:1/-1}
+.badge{display:inline-block;padding:5px 9px;border-radius:20px;background:#eef8f2;color:#08733a;font-size:12px}
+@media(max-width:800px){
+ .nav{flex-wrap:wrap}.navlinks{order:3;width:100%;justify-content:space-between;overflow:auto}.search{order:2;width:100%;margin:0}
+ .hero{padding:34px 22px}.hero h1{font-size:27px}.hero-icon{font-size:65px}
+ .detail,.checkout{grid-template-columns:1fr}.detail .image{min-height:280px}
+ .cart-row{grid-template-columns:1fr auto}
+}
+@media(max-width:500px){.top{display:none}.hero-icon{display:none}.products{grid-template-columns:1fr 1fr}.card{min-height:330px}.prodimg{height:140px;font-size:17px}.card .actions{flex-direction:column}.wrap{padding:0 12px}}
+.admin-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:20px}.admin-list{display:grid;gap:10px}.admin-item{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;justify-content:space-between;gap:10px;align-items:center}.admin-actions{display:flex;gap:6px;flex-wrap:wrap}.admin-note{background:#fff8e7;border:1px solid #f0d99a;color:#6b5315;padding:12px;border-radius:10px;line-height:1.8}.upload-box{background:#f8fbfa;border:1px dashed #b9cfc4;border-radius:12px;padding:12px;margin:10px 0}.upload-previews{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.upload-previews img{width:82px;height:82px;object-fit:cover;border-radius:10px;border:1px solid var(--border)}@media(max-width:850px){.admin-grid{grid-template-columns:1fr}}.package-art{width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:14px}.package-label{width:72%;height:88%;border-radius:10px;background:linear-gradient(150deg,#f4f1df,#d9d2ae);color:#18324d;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 7px 16px #0004;border:2px solid #b9ae7d;padding:8px}.package-label small{font-weight:bold;color:#087746}.package-label b{font-size:16px;margin:8px 0}.package-label span{background:#06264b;color:#fff;padding:5px 10px;border-radius:15px;font-size:12px}.mini-package{width:65px;height:65px;flex:none}.mini-package .package-art{padding:3px}.mini-package .package-label{width:90%;height:90%}.mini-package .package-label b{font-size:7px;margin:2px 0}.mini-package .package-label span{font-size:7px;padding:2px 4px}.mini-package .package-label small{font-size:7px}
+.company-info{max-width:1200px;margin:18px auto 0;padding:0 18px}
+.company-box{background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:20px}
+.company-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.company-head h2{margin:0;color:var(--navy);font-size:22px}
+.company-badge{background:#effbf4;color:var(--green2);border-radius:20px;padding:6px 11px;font-size:12px;font-weight:bold}
+.company-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px}
+.company-item{padding:10px 0;border-bottom:1px solid #edf1ef;line-height:1.9}
+.company-item b{color:var(--navy);display:inline-block;margin-left:5px}
+.company-item.full{grid-column:1/-1}
+.license-box{margin-top:15px;background:#f4f9f6;border-right:4px solid var(--green);padding:14px;border-radius:10px;line-height:2}
+.company-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.company-links a{background:var(--navy);color:#fff;padding:9px 14px;border-radius:9px;font-size:13px}
+@media(max-width:650px){.company-grid{grid-template-columns:1fr}.company-item.full{grid-column:auto}.company-box{padding:15px}.company-head h2{font-size:19px}}
+.company-box{position:relative;overflow:hidden}.company-box:before{content:"";position:absolute;top:-80px;left:-70px;width:190px;height:190px;border-radius:50%;background:rgba(10,170,85,.07);pointer-events:none}.company-head{position:relative;z-index:1}.company-grid{position:relative;z-index:1}.company-item{transition:.2s}.company-item:hover{padding-right:7px;color:var(--green2)}.company-links a{transition:.2s;box-shadow:0 6px 14px rgba(6,38,75,.12)}.company-links a:hover{transform:translateY(-2px);background:#0a6040}@media(max-width:650px){.company-box>div:first-child[style*="grid-template-columns"]{grid-template-columns:1fr!important}.company-head{align-items:flex-start}}
+
+body{background:radial-gradient(circle at top right,#eef8f2 0,#f4f7f6 35%,#eef3f1 100%)}
+.nav{background:rgba(255,255,255,.94);backdrop-filter:blur(10px);box-shadow:0 4px 22px rgba(6,38,75,.10)}
+.logo{transition:.2s}.logo:hover{transform:translateY(-1px)}
+.hero{margin-top:18px;border-radius:28px;box-shadow:0 18px 45px rgba(6,38,75,.16);position:relative;overflow:hidden;background:linear-gradient(115deg,#06264b 0%,#0a6040 100%)}
+.hero:after{content:"";position:absolute;width:260px;height:260px;border:1px solid rgba(255,255,255,.12);border-radius:50%;left:-70px;bottom:-130px}.hero>div{position:relative;z-index:1}
+.hero h1{font-weight:900;letter-spacing:-.5px}.hero p{opacity:.92}.hero-icon{filter:drop-shadow(0 10px 18px rgba(0,0,0,.2))}
+.btn{border-radius:12px;box-shadow:0 6px 16px rgba(6,38,75,.10)}
+.btn.alt{box-shadow:none}.card{border:1px solid rgba(226,232,229,.8);transition:transform .2s,box-shadow .2s}.card:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(6,38,75,.14)}
+.prodimg{box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+.section-head h1,.section-head h2{font-weight:900}
+.company-info{max-width:1200px;margin:28px auto 0;padding:0 18px}.company-box{background:rgba(255,255,255,.94);box-shadow:0 14px 34px rgba(6,38,75,.10)}
+.footer{border-radius:28px 28px 0 0}
+@media(max-width:800px){.hero{margin:12px 12px 0;border-radius:22px}}
+</style>
+</head>
+<body>
+<div class="top"><span id="topText"></span><span>واتساپ: <span id="topPhone"></span></span></div>
+
+<nav class="nav">
+  <button class="logo" onclick="adminSecretClick()" title="">ویگل <span>کود</span></button>
+  <div class="navlinks">
+    <button onclick="home()">صفحه اصلی</button>
+    <button onclick="catalog()">محصولات</button>
+    <button onclick="cartPage()">سبد خرید (<b id="count">0</b>)</button><button id="adminNavBtn" style="display:none" onclick="adminLogin()">⚙️ مدیریت</button>
+  </div>
+  <input id="searchBox" class="search" placeholder="جستجوی محصول..." oninput="filterProducts(this.value)">
+</nav>
+
+
+
+
+<main id="app"></main>
+
+<button class="cart-float" onclick="cartPage()">🛒 سبد خرید: <span id="count2">0</span> قلم</button>
+<div id="toast" class="toast"></div>
+
+<footer class="footer">
+  <div id="footerText"><b>ویگل کود</b> — تولید و تأمین کودهای کشاورزی</div>
+  <small>تماس: <span id="footerPhone">09133610593</span></small>
+</footer>
+
+<script>
+const defaultProducts=[
+ {id:"humic",name:"هیومیک اسید",cat:"اصلاح‌کننده خاک",price:"۴۹۰,۰۰۰ تومان / کیلو",numericPrice:490000,desc:"اصلاح‌کننده خاک با هدف بهبود ساختمان خاک و کمک به جذب عناصر غذایی.",usage:"برای مصرف دقیق، مقدار مصرف را بر اساس برچسب محصول و آزمون خاک تعیین کنید. قابل استفاده در برنامه تغذیه خاک و همراه آبیاری، در صورت سازگاری محصول.",timing:"زمان مصرف بر اساس نوع کشت و برنامه تغذیه تعیین می‌شود.",tips:"قبل از مصرف، دستورالعمل محصول و سازگاری با سایر نهاده‌ها را بررسی کنید.",available:true,short:"HUMIC ACID",image:"",packages:[{size:"۱ کیلو",price:"۴۹۰,۰۰۰ تومان / کیلو",image:""},{size:"۵ کیلو",price:"استعلام قیمت",image:""},{size:"۱۰ کیلو",price:"استعلام قیمت",image:""}]},
+ {id:"leonardite",name:"لئوناردیت",cat:"اصلاح‌کننده خاک",price:"استعلام قیمت",numericPrice:null,desc:"محصول اصلاح‌کننده خاک.",usage:"برای مصرف دقیق، مقدار مصرف را طبق برچسب محصول و شرایط خاک و کشت تعیین کنید.",timing:"زمان مصرف بسته به نوع کشت و برنامه اصلاح خاک تعیین می‌شود.",tips:"قبل از اختلاط با سایر نهاده‌ها، سازگاری را بررسی کنید.",available:true,short:"LEONARDITE",image:"",packages:[{size:"۱ کیلو",price:"استعلام قیمت",image:""},{size:"۵ کیلو",price:"استعلام قیمت",image:""},{size:"۱۰ کیلو",price:"استعلام قیمت",image:""}]},
+ {id:"fulvic",name:"فولویک اسید",cat:"کود مایع",price:"استعلام قیمت",numericPrice:null,desc:"محصول کودی مایع.",usage:"مقدار مصرف را طبق برچسب محصول و برنامه تغذیه تعیین کنید. در صورت نیاز قبل از مصرف تست اختلاط انجام دهید.",timing:"با توجه به مرحله رشد و برنامه تغذیه کشت.",tips:"از مصرف بیش از مقدار توصیه‌شده خودداری کنید.",available:true,short:"FULVIC ACID",image:"",packages:[{size:"۱ لیتر",price:"استعلام قیمت",image:""},{size:"۵ لیتر",price:"استعلام قیمت",image:""},{size:"۱۰ لیتر",price:"استعلام قیمت",image:""}]},
+ {id:"amino",name:"آمینواسید",cat:"کود مایع",price:"استعلام قیمت",numericPrice:null,desc:"محصول کودی مایع.",usage:"مقدار مصرف را طبق برچسب محصول و مرحله رشد گیاه تعیین کنید. برای محلول‌پاشی، سازگاری و شرایط آب‌وهوایی مناسب را در نظر بگیرید.",timing:"بسته به مرحله رشد و برنامه تغذیه کشت.",tips:"قبل از اختلاط با سموم یا کودهای دیگر، سازگاری را بررسی کنید.",available:true,short:"AMINO ACID",image:"",packages:[{size:"۱ لیتر",price:"استعلام قیمت",image:""},{size:"۵ لیتر",price:"استعلام قیمت",image:""},{size:"۱۰ لیتر",price:"استعلام قیمت",image:""}]},
+ {id:"sulfur-calcium",name:"گوگرد مایع کلسیمی",cat:"اصلاح‌کننده خاک",price:"استعلام قیمت",numericPrice:null,desc:"محصول اصلاح‌کننده خاک.",usage:"مقدار مصرف را با توجه به شرایط خاک، کشت و برچسب محصول تعیین کنید.",timing:"بر اساس برنامه اصلاح خاک و مرحله کشت.",tips:"از اختلاط خودسرانه با ترکیبات ناسازگار خودداری کنید.",available:true,short:"SULFUR + Ca",image:"",packages:[{size:"۱ لیتر",price:"استعلام قیمت",image:""},{size:"۵ لیتر",price:"استعلام قیمت",image:""},{size:"۱۰ لیتر",price:"استعلام قیمت",image:""}]},
+ {id:"sulfur-carbon",name:"گوگرد مایع کربنی",cat:"کود مایع",price:"استعلام قیمت",numericPrice:null,desc:"محصول کودی مایع.",usage:"مقدار مصرف را طبق برچسب محصول و شرایط خاک و کشت تعیین کنید.",timing:"زمان مصرف بر اساس برنامه تغذیه و شرایط کشت تعیین می‌شود.",tips:"پیش از مصرف، دستورالعمل و سازگاری محصول را بررسی کنید.",available:true,short:"CARBON SULFUR",image:"",packages:[{size:"۱ لیتر",price:"استعلام قیمت",image:""},{size:"۵ لیتر",price:"استعلام قیمت",image:""},{size:"۱۰ لیتر",price:"استعلام قیمت",image:""}]}
+];
+const defaultSettings={phone:"09133610593",title:"کودهای باکیفیت، کشاورزی پایدار",subtitle:"کاتالوگ محصولات شرکت توسعه ماندگار ویگل | ویگل کود",topText:"شرکت توسعه ماندگار ویگل — تولید کود کمپوست",footerText:"ویگل کود — شرکت توسعه ماندگار ویگل"};
+let products=JSON.parse(localStorage.getItem("vigol_products")||"null")||JSON.parse(JSON.stringify(defaultProducts));
+products=products.map((p,i)=>Object.assign({},defaultProducts.find(d=>d.id===p.id)||defaultProducts[i]||{},p,{packages:p.packages||((defaultProducts.find(d=>d.id===p.id)||{}).packages||[])}));
+let settings=Object.assign({},defaultSettings,JSON.parse(localStorage.getItem("vigol_settings")||"{}"));
+let orders=JSON.parse(localStorage.getItem("vigol_orders")||"[]");
+function saveOrders(){localStorage.setItem("vigol_orders",JSON.stringify(orders));}
+
+let cart=JSON.parse(localStorage.getItem("vigol_cart")||"{}");
+let selectedCategory="همه";
+let currentQty=1;
+
+function saveCart(){localStorage.setItem("vigol_cart",JSON.stringify(cart));update()}
+function cartCount(){return Object.values(cart).reduce((a,b)=>a+b,0)}
+function update(){document.getElementById("count").textContent=cartCount();document.getElementById("count2").textContent=cartCount()}
+function money(n){return Number(n||0).toLocaleString("fa-IR")+" تومان"}
+function toLatinDigits(v){return String(v??"").replace(/[۰-۹]/g,d=>String("۰۱۲۳۴۵۶۷۸۹".indexOf(d))).replace(/[٠-٩]/g,d=>String("٠١٢٣٤٥٦٧٨٩".indexOf(d)))}
+function priceNumber(v){const s=toLatinDigits(v).replace(/[^0-9]/g,"");return s?Number(s):null}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1800)}
+function getProduct(id){return products.find(p=>p.id===id)}
+
+function packageVisual(p,size){
+ const pack=(p.packages||[]).find(x=>x.size===size);
+ const image=(pack&&pack.image)||p.image||"";
+ if(image) return `<img src="${esc(image)}" alt="${esc(p.name)} - ${esc(size||"")}" style="width:100%;height:100%;object-fit:cover;border-radius:13px">`;
+ const safeSize=esc(size||"بسته");
+ return `<div class="package-art"><div class="package-label"><small>ویگل کود</small><b>${esc(p.name)}</b><span>${safeSize}</span></div></div>`;
+}
+function packageFor(p,size){
+ return (p.packages||[]).find(x=>x.size===size)||(p.packages||[])[0]||{size:"",price:p.price,image:p.image||""};
+}
+function card(p){
+ const first=(p.packages&&p.packages[0])||{size:""};
+ const firstImage=first.image||p.image||"";
+ return `<article class="card">
+   <div class="prodimg">${firstImage?`<img src="${esc(firstImage)}" alt="${esc(p.name)}" style="width:100%;height:100%;object-fit:cover;border-radius:13px">`:packageVisual(p,first.size)}</div>
+   <span class="badge">${esc(p.cat)}</span><h3>${esc(p.name)}</h3>
+   <div class="muted">${esc(p.desc)}</div><div class="price">${esc(first.price||p.price)}</div>
+   <div class="actions"><button class="btn alt" onclick="showProduct('${p.id}')">جزئیات</button><button class="btn" onclick="add('${p.id}',1,'${esc(first.size)}')">افزودن</button></div>
+ </article>`;
+}
+function showProduct(id,chosenSize=null){
+ const p=getProduct(id); if(!p)return;
+ const first=(p.packages&&p.packages[0])||{size:"",price:p.price,image:p.image||""};
+ const pack=packageFor(p,chosenSize||first.size); currentQty=1;
+ document.getElementById("app").innerHTML=`
+ <section class="wrap detail">
+  <div><div class="image">${pack.image?`<img src="${esc(pack.image)}" alt="${esc(p.name)} - ${esc(pack.size)}" style="width:100%;height:100%;object-fit:cover;border-radius:20px">`:packageVisual(p,pack.size)}</div>
+  <div class="option-row" style="margin-top:12px">${(p.packages||[]).map(x=>`<button class="cat ${x.size===pack.size?"active":""}" onclick="selectPackage('${p.id}','${esc(x.size)}')">${esc(x.size)}</button>`).join("")}</div></div>
+  <div class="panel"><span class="badge">${esc(p.cat)}</span><h1>${esc(p.name)}</h1>
+   <div class="notice">${p.available?"موجود در انبار":"ناموجود"}</div><h2 class="price">${esc(pack.price||p.price)}</h2><p>${esc(p.desc)}</p>
+   <div class="muted"><b>روش مصرف</b></div><p>${esc(p.usage||"روش مصرف طبق برچسب محصول و شرایط کشت تعیین شود.")}</p>
+   <div class="muted"><b>زمان مصرف</b></div><p>${esc(p.timing||"طبق برنامه تغذیه و دستورالعمل محصول.")}</p>
+   <div class="muted"><b>نکات مهم</b></div><p>${esc(p.tips||"دستورالعمل روی بسته را قبل از مصرف مطالعه کنید.")}</p>
+   ${p.id==="humic"?`<table class="analysis"><tr><td>ماده آلی</td><td>۷۱٪</td></tr><tr><td>هیومیک اسید</td><td>۵۶٪</td></tr><tr><td>K₂O</td><td>۱۲٪</td></tr><tr><td>فولویک اسید</td><td>۳٪</td></tr><tr><td>pH</td><td>۹</td></tr></table>`:""}
+   <div class="qty"><button onclick="changePageQty(-1)">−</button><b id="q">1</b><button onclick="changePageQty(1)">+</button></div>
+   <button class="btn" style="width:100%" onclick="add('${p.id}',currentQty,'${esc(pack.size)}')">افزودن ${esc(pack.size)} به سبد خرید</button>
+   <button class="btn alt" style="width:100%;margin-top:10px" onclick="whatsappProduct('${p.id}','${esc(pack.size)}')">تماس از طریق واتساپ</button>
+  </div></section>`;
+ window.scrollTo(0,0);
+}
+function selectPackage(id,size){showProduct(id,size)}
+function changePageQty(x){currentQty=Math.max(1,currentQty+x);document.getElementById("q").textContent=currentQty}
+function add(id,qty=1,size=null){
+ const p=getProduct(id); if(!p)return;
+ const chosen=size||((p.packages&&p.packages[0]&&p.packages[0].size)||"");
+ const key=id+"::"+chosen;
+ cart[key]=(cart[key]||0)+qty;
+ saveCart(); toast("محصول با بسته‌بندی "+chosen+" به سبد خرید اضافه شد.");
+}
+function changeQty(key,delta){
+ cart[key]=(cart[key]||0)+delta;
+ if(cart[key]<=0) delete cart[key];
+ saveCart(); cartPage();
+}
+function whatsappProduct(id,size=""){
+ const p=getProduct(id);
+ const msg=`سلام، درباره محصول ${p.name}، بسته ${size} از ویگل کود اطلاعات و قیمت می‌خواهم.`;
+ window.open("https://wa.me/"+settings.phone.replace(/^0/,"98")+"?text="+encodeURIComponent(msg),"_blank");
+}
+function cartPage(){
+ const keys=Object.keys(cart);
+ if(!keys.length){
+  document.getElementById("app").innerHTML=`<section class="wrap"><div class="empty"><h2>سبد خرید خالی است</h2><p class="muted">برای شروع، محصولات موردنظر را به سبد خرید اضافه کنید.</p><button class="btn" onclick="catalog()">رفتن به محصولات</button></div></section>`;
+  return;
+ }
+ const rows=keys.map(key=>{
+  const parts=key.split("::"),p=getProduct(parts[0]),size=parts[1]||"",qty=cart[key],pack=packageFor(p,size);
+  return `<div class="cart-row"><div style="display:flex;align-items:center;gap:12px">
+    <div class="mini-package">${packageVisual(p,size)}</div><div><b>${esc(p.name)}</b><div class="muted">بسته‌بندی: ${esc(size)} — ${esc(pack.price||p.price)}</div>${priceNumber(pack.price||p.price)!=null?`<div class="muted">مبلغ این ردیف: ${money(priceNumber(pack.price||p.price)*qty)}</div>`:""}</div>
+   </div>
+   <div class="qty"><button onclick="changeQty('${key}',-1)">−</button><b>${qty}</b><button onclick="changeQty('${key}',1)">+</button></div>
+   <button class="btn danger small" onclick="delete cart['${key}'];saveCart();cartPage()">حذف</button></div>`;
+ }).join("");
+ document.getElementById("app").innerHTML=`
+ <section class="wrap"><h1>سبد خرید</h1><div class="checkout">
+  <div class="panel"><h3>محصولات سفارش</h3>${rows}
+   <div class="total">مبلغ کل: <span id="cartTotalText">در حال محاسبه...</span></div>
+  </div>
+  <div class="panel"><h3>اطلاعات سفارش</h3>
+   <input id="name" class="field" placeholder="نام و نام خانوادگی">
+   <input id="phone" class="field" placeholder="شماره موبایل">
+   <input id="address" class="field" placeholder="آدرس ارسال">
+   <textarea id="note" class="field" placeholder="توضیحات سفارش (اختیاری)"></textarea>
+   <button class="btn" style="width:100%" onclick="submitOrder(true)">ارسال سفارش به واتساپ</button>
+   <p class="muted">با زدن این دکمه، سفارش در سایت ثبت می‌شود و فاکتور کامل شامل قیمت واحد، مبلغ هر محصول و مبلغ کل برای واتساپ ارسال می‌شود.</p>
+  </div>
+ </div></section>`;
+ const cartTotal=keys.reduce((sum,key)=>{const z=key.split("::"),p=getProduct(z[0]),pack=packageFor(p,z[1]||""),n=priceNumber(pack.price||p.price);return sum+(n!=null?n*(cart[key]||0):0)},0);
+ const allPriced=keys.every(key=>{const z=key.split("::"),p=getProduct(z[0]),pack=packageFor(p,z[1]||"");return priceNumber(pack.price||p.price)!=null});
+ const totalEl=document.getElementById("cartTotalText");
+ if(totalEl) totalEl.textContent=allPriced?money(cartTotal):"بعضی محصولات نیاز به استعلام قیمت دارند";
+}
+function submitOrder(sendWhatsapp=true){
+ const name=document.getElementById("name").value.trim(),phone=document.getElementById("phone").value.trim(),address=document.getElementById("address").value.trim(),note=document.getElementById("note").value.trim();
+ if(!name||!phone||!address){toast("لطفاً نام، موبایل و آدرس را وارد کن.");return}
+ const lines=Object.keys(cart).map((key,i)=>{
+  const z=key.split("::"),p=getProduct(z[0]),pack=packageFor(p,z[1]||""),displayPrice=pack.price||p.price||"استعلام قیمت",unitPrice=priceNumber(displayPrice),qty=cart[key],lineTotal=unitPrice!=null?unitPrice*qty:null;
+  return {productId:p.id,product:p.name,size:pack.size||z[1]||"اصلی",qty,price:displayPrice,unitPrice,lineTotal};
+ });
+ const orderTotal=lines.every(x=>x.lineTotal!=null)?lines.reduce((sum,x)=>sum+x.lineTotal,0):null;
+ const order={id:"VK-"+Date.now(),date:new Date().toLocaleString("fa-IR"),name,phone,address,note,items:lines,total:orderTotal,status:"جدید",paymentStatus:"در انتظار پرداخت"};
+ orders.unshift(order);saveOrders();
+ const textLines=lines.map((x,i)=>{
+  const totalText=x.lineTotal!=null?money(x.lineTotal):"استعلام قیمت";
+  const unitText=x.unitPrice!=null?money(x.unitPrice):x.price;
+  return `${i+1}) ${x.product}\n   وزن/حجم: ${x.size}\n   تعداد: ${x.qty}\n   قیمت واحد: ${unitText}\n   مبلغ این محصول: ${totalText}`;
+ });
+ const totalText=orderTotal!=null?money(orderTotal):"استعلام قیمت / نیازمند تأیید";
+ const msg=`سلام، برای ویگل کود سفارش دارم.\n\nکد سفارش: ${order.id}\nنام: ${name}\nموبایل: ${phone}\nآدرس: ${address}\n\n🧾 فاکتور سفارش:\n${textLines.join("\n\n")}\n\n💰 مبلغ کل سفارش: ${totalText}${note?"\n\nتوضیحات: "+note:""}`;
+ if(sendWhatsapp){window.open("https://wa.me/"+settings.phone.replace(/^0/,"98")+"?text="+encodeURIComponent(msg),"_blank")}
+ cart={};saveCart();
+ document.getElementById("app").innerHTML=`<section class="wrap"><div class="empty"><h2>سفارش شما ثبت شد ✅</h2><p>کد سفارش: <b>${esc(order.id)}</b></p><p class="muted">سفارش در سایت ذخیره شد.${sendWhatsapp?" فاکتور کامل شامل مبلغ هر محصول و مبلغ کل برای واتساپ آماده شد.":""}</p><button class="btn" onclick="home()">بازگشت به فروشگاه</button></div></section>`;
+}
+function home(){
+ const company_html=`<section class="company-info">
+  <div class="company-box">
+    <div class="company-head">
+      <div>
+        <div style="font-size:12px;color:var(--green2);font-weight:900;letter-spacing:.3px;margin-bottom:5px">ABOUT VIGOL KOOD</div>
+        <h2>معرفی شرکت توسعه ماندگار ویگل</h2>
+        <div class="muted" style="margin-top:6px">تولید و تأمین نهاده‌های کشاورزی با رویکرد کیفیت و اعتماد</div>
+      </div>
+      <span class="company-badge">ویگل کود • رسمی</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0 20px">
+      <div style="background:linear-gradient(135deg,#06264b,#0b4d3a);color:#fff;border-radius:14px;padding:15px;text-align:center"><div style="font-size:22px;font-weight:900">🌱</div><b>ویگل کود</b><div style="font-size:11px;opacity:.78;margin-top:3px">نام تجاری</div></div>
+      <div style="background:#f4f9f6;border:1px solid #e0eee6;border-radius:14px;padding:15px;text-align:center"><div style="font-size:22px;font-weight:900">✓</div><b style="color:var(--navy)">پروانه کسب</b><div style="font-size:11px;color:var(--muted);margin-top:3px">کشاورزی</div></div>
+      <div style="background:#f7f9fc;border:1px solid #e3e9f0;border-radius:14px;padding:15px;text-align:center"><div style="font-size:22px;font-weight:900">☎</div><b style="color:var(--navy)">ارتباط مستقیم</b><div style="font-size:11px;color:var(--muted);margin-top:3px">واتساپ و تلفن</div></div>
+    </div>
+    <div class="company-grid">
+      <div class="company-item"><b>نام شرکت:</b> توسعه ماندگار ویگل</div>
+      <div class="company-item"><b>نام تجاری:</b> ویگل کود</div>
+      <div class="company-item"><b>شناسه ملی:</b> ۱۱۱۵۳۳۴۹۹۴۴</div>
+      <div class="company-item"><b>شماره ثبت:</b> ۱۴۰۱۵۱۸۴۸۰۲</div>
+      <div class="company-item full"><b>آدرس:</b> استان اصفهان، شهرستان آران و بیدگل، خیابان امام زاده قاسم، نبش کوچه میثاق ۱۸</div>
+      <div class="company-item"><b>شماره تماس:</b> ۰۹۱۳۳۶۱۰۵۹۳</div>
+      <div class="company-item"><b>واتساپ:</b> ۰۹۱۳۳۶۱۰۵۹۳</div>
+      <div class="company-item"><b>اینستاگرام:</b> vigol.kood</div>
+      <div class="company-item"><b>مدیر / مسئول:</b> ابوالفضل پاسبانزاده</div>
+    </div>
+    <div class="license-box">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap">
+        <div><b>مجوز فعالیت کشاورزی</b><br><span class="muted">شماره پروانه کسب: ۱۱۲۱۲۳۲۳۷۷۳</span></div>
+        <span style="background:#fff;border:1px solid #dce9e1;border-radius:10px;padding:7px 11px;color:var(--green2);font-weight:900;font-size:12px">معتبر و ثبت‌شده</span>
+      </div>
+    </div>
+    <div class="company-links">
+      <a href="https://instagram.com/vigol.kood" target="_blank" rel="noopener">اینستاگرام ویگل کود</a>
+      <a href="https://wa.me/989133610593" target="_blank" rel="noopener">ارتباط در واتساپ</a>
+    </div>
+  </div>
+</section>`;
+ document.getElementById("app").innerHTML=`<section class="hero"><div><div style="font-size:13px;font-weight:bold;opacity:.8;margin-bottom:8px">ویگل کود • کشاورزی حرفه‌ای</div><h1>${esc(settings.title)}</h1><p>${esc(settings.subtitle)}</p><button class="btn alt" onclick="catalog()">مشاهده محصولات</button></div><div class="hero-icon">🌱</div></section>${company_html}`;refreshSiteChrome();
+}
+function catalog(){
+ const list=products.filter(p=>selectedCategory==="همه"||p.cat===selectedCategory);
+ document.getElementById("app").innerHTML=`<section class="wrap"><div class="section-head"><h1>کاتالوگ محصولات ویگل کود</h1><span class="muted">${list.length} محصول</span></div><div class="cats">${["همه","اصلاح‌کننده خاک","کود مایع"].map(c=>`<button class="cat ${selectedCategory===c?"active":""}" onclick="selectedCategory='${c}';catalog()">${c}</button>`).join("")}</div><div class="products">${list.length?list.map(card).join(""):`<div class="noresult">محصولی پیدا نشد.</div>`}</div></section>`;refreshSiteChrome();
+}
+function saveProducts(){localStorage.setItem("vigol_products",JSON.stringify(products))}
+function saveSettings(){localStorage.setItem("vigol_settings",JSON.stringify(settings))}
+function esc(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function slugify(s){return s.trim().toLowerCase().replace(/[^\w\u0600-\u06FF]+/g,"-").replace(/^-+|-+$/g,"")}
+
+function refreshSiteChrome(){
+ document.getElementById("topText").textContent=settings.topText;
+ document.getElementById("topPhone").textContent=settings.phone;
+ document.getElementById("footerText").textContent=settings.footerText;
+ document.getElementById("footerPhone").textContent=settings.phone;
+}
+
+const ADMIN_PASSWORD = "ویگل کود 0593";
+let adminUnlocked = sessionStorage.getItem("vigol_admin_unlocked") === "1";
+
+
+let adminSecretClicks = 0;
+let adminSecretTimer = null;
+
+function adminSecretClick(){
+  adminSecretClicks++;
+  clearTimeout(adminSecretTimer);
+  adminSecretTimer = setTimeout(()=>{ adminSecretClicks = 0; }, 1800);
+  if(adminSecretClicks >= 5){
+    adminSecretClicks = 0;
+    adminLogin();
+  }
+}
+
+function adminLogin(){
+  if(adminUnlocked){ adminPage(); return; }
+  const pass = prompt("رمز ورود مدیریت را وارد کنید:");
+  if(pass === ADMIN_PASSWORD){
+    adminUnlocked = true;
+    sessionStorage.setItem("vigol_admin_unlocked","1");
+    const btn=document.getElementById("adminNavBtn");
+    if(btn) btn.style.display="";
+    adminPage();
+    toast("ورود مدیر با موفقیت انجام شد.");
+  }else if(pass !== null){
+    toast("رمز مدیریت اشتباه است.");
+  }
+}
+
+function adminLogout(){
+  adminUnlocked = false;
+  sessionStorage.removeItem("vigol_admin_unlocked");
+  const btn=document.getElementById("adminNavBtn");
+  if(btn) btn.style.display="none";
+  home();
+  toast("از مدیریت خارج شدی.");
+}
+
+function requireAdmin(){
+  if(!adminUnlocked){
+    adminLogin();
+    return false;
+  }
+  return true;
+}
+
+function adminPage(editId=null){
+ const p=editId?getProduct(editId):null;
+ const cats=[...new Set(products.map(x=>x.cat))];
+ document.getElementById("app").innerHTML=`
+ <section class="wrap">
+  <div class="section-head"><h1>⚙️ مدیریت سایت</h1><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn alt" onclick="catalog()">بازگشت به فروشگاه</button><button class="btn danger" onclick="adminLogout()">خروج مدیر</button></div></div>
+  <div class="admin-note">این پنل فقط برای مدیر سایت است. ورود با رمز مدیریت انجام می‌شود. تغییرات روی همین مرورگر ذخیره می‌شود. برای انتقال به دستگاه دیگر از خروجی پشتیبان استفاده کن.</div>
+  <div class="admin-grid" style="margin-top:18px">
+   <div class="panel">
+    <h2>${p?"ویرایش محصول":"افزودن محصول جدید"}</h2>
+    <input id="a_name" class="field" placeholder="نام محصول" value="${p?esc(p.name):""}">
+    <input id="a_cat" class="field" list="catlist" placeholder="دسته‌بندی" value="${p?esc(p.cat):""}">
+    <datalist id="catlist">${cats.map(c=>`<option value="${esc(c)}">`).join("")}</datalist>
+    <input id="a_price" class="field" placeholder="قیمت نمایشی، مثلاً ۴۹۰,۰۰۰ تومان / کیلو" value="${p?esc(p.price):""}">
+    <input id="a_numeric" class="field" type="number" placeholder="قیمت عددی برای محاسبه جمع" value="${p&&p.numericPrice!=null?p.numericPrice:""}">
+    <textarea id="a_desc" class="field" placeholder="توضیحات محصول">${p?esc(p.desc):""}</textarea>
+    <textarea id="a_usage" class="field" placeholder="روش مصرف">${p?esc(p.usage||""):""}</textarea>
+    <textarea id="a_timing" class="field" placeholder="زمان مصرف">${p?esc(p.timing||""):""}</textarea>
+    <textarea id="a_tips" class="field" placeholder="نکات مهم">${p?esc(p.tips||""):""}</textarea>
+    <input id="a_short" class="field" placeholder="عنوان کوتاه محصول" value="${p?esc(p.short):""}">
+    <div class="upload-box">
+      <b>📷 عکس واقعی محصول</b>
+      <div class="muted">عکس را مستقیماً از گوشی یا کامپیوتر انتخاب کن. اگر عکس جدید انتخاب نکنی، عکس قبلی حفظ می‌شود.</div>
+      <input id="a_image_file" class="field" type="file" accept="image/*" onchange="previewImageFile(this,'a_image_preview')">
+      <div id="a_image_preview" style="margin-top:8px">${p&&p.image?`<img src="${esc(p.image)}" style="max-width:180px;max-height:180px;border-radius:12px;object-fit:cover;border:1px solid var(--border)" alt="پیش‌نمایش">`:``}</div>
+    </div>
+    <textarea id="a_packages" class="field" placeholder="هر بسته‌بندی را یک خط بنویس؛ مثال:
+۱ کیلو | ۴۹۰,۰۰۰ تومان / کیلو
+۵ کیلو | استعلام قیمت
+۱۰ کیلو | استعلام قیمت">${p?esc((p.packages||[]).map(x=>x.size+" | "+x.price).join("\n")):"۱ کیلو | استعلام قیمت\n۵ کیلو | استعلام قیمت\n۱۰ کیلو | استعلام قیمت"}</textarea>
+    <div class="upload-box">
+      <b>📦 عکس بسته‌بندی‌ها</b>
+      <div class="muted">اگر چند عکس انتخاب می‌کنی، ترتیب عکس‌ها باید دقیقاً مطابق ترتیب خطوط بالا باشد.</div>
+      <input id="a_package_files" class="field" type="file" accept="image/*" multiple onchange="previewPackageFiles(this,'a_package_preview')">
+      <div id="a_package_preview" class="upload-previews">${p?(p.packages||[]).map(x=>x.image?`<img src="${esc(x.image)}" alt="${esc(x.size)}">`:"").join(""):""}</div>
+    </div>
+    <label style="display:block;margin:8px 0"><input id="a_available" type="checkbox" ${!p||p.available?"checked":""}> موجود در انبار</label>
+    <button class="btn" onclick="saveProduct('${p?p.id:""}')">${p?"ذخیره تغییرات":"افزودن محصول"}</button>
+    ${p?`<button class="btn alt" style="margin-right:8px" onclick="adminPage()">لغو</button>`:""}
+   </div>
+   <div>
+    <div class="panel"><h2>محصولات</h2>
+     <div class="admin-list">${products.map(x=>`
+      <div class="admin-item"><div><b>${esc(x.name)}</b><div class="muted">${esc(x.cat)} — ${esc(x.price)}</div></div>
+      <div class="admin-actions"><button class="btn small" onclick="adminPage('${x.id}')">ویرایش</button><button class="btn danger small" onclick="deleteProduct('${x.id}')">حذف</button></div></div>`).join("")}</div>
+    </div>
+    <div class="panel" style="margin-top:20px"><h2>اطلاعات کلی سایت</h2>
+     <input id="s_title" class="field" placeholder="عنوان اصلی" value="${esc(settings.title)}">
+     <input id="s_subtitle" class="field" placeholder="زیرعنوان" value="${esc(settings.subtitle)}">
+     <input id="s_phone" class="field" placeholder="شماره واتساپ" value="${esc(settings.phone)}">
+     <input id="s_top" class="field" placeholder="متن نوار بالا" value="${esc(settings.topText)}">
+     <input id="s_footer" class="field" placeholder="متن پایین سایت" value="${esc(settings.footerText)}">
+     <button class="btn" onclick="saveSiteSettings()">ذخیره اطلاعات سایت</button>
+    </div>
+    <div class="panel" style="margin-top:20px"><h2>📋 سفارش‌های ثبت‌شده در سایت</h2>
+     ${orders.length?orders.map(o=>`<div class="admin-item" style="display:block;margin:10px 0"><b>${esc(o.id)}</b> — ${esc(o.date)}<br>مشتری: ${esc(o.name)} | موبایل: ${esc(o.phone)}<br>آدرس: ${esc(o.address)}<br>${o.items.map(x=>`• ${esc(x.product)} — ${esc(x.size)} — تعداد ${x.qty} — ${esc(x.price)}`).join("<br>")}<br><small>وضعیت: ${esc(o.status)} | پرداخت: ${esc(o.paymentStatus)}</small></div>`).join(""):`<p class="muted">هنوز سفارشی در سایت ثبت نشده است.</p>`}
+    </div>
+    <div class="panel" style="margin-top:20px"><h2>پشتیبان‌گیری</h2>
+     <p class="muted">اطلاعات محصولات و تنظیمات را فایل بگیر و در دستگاه دیگر وارد کن.</p>
+     <button class="btn" onclick="exportData()">خروجی پشتیبان</button>
+     <label class="btn alt" style="display:inline-block;margin-right:7px">ورود پشتیبان<input type="file" accept=".json" onchange="importData(this.files[0])" style="display:none"></label>
+     <button class="btn danger" style="margin-right:7px" onclick="resetData()">بازگردانی اولیه</button>
+    </div>
+   </div>
+  </div>
+ </section>`;
+ window.scrollTo(0,0);
+}
+function readImageFile(file){
+ return new Promise((resolve,reject)=>{
+   if(!file){resolve("");return}
+   const r=new FileReader();
+   r.onload=()=>resolve(r.result);
+   r.onerror=reject;
+   r.readAsDataURL(file);
+ });
+}
+function previewImageFile(input,targetId){
+ const file=input.files&&input.files[0];
+ if(!file)return;
+ const url=URL.createObjectURL(file);
+ document.getElementById(targetId).innerHTML=`<img src="${url}" style="max-width:180px;max-height:180px;border-radius:12px;object-fit:cover;border:1px solid var(--border)" alt="پیش‌نمایش">`;
+}
+function previewPackageFiles(input,targetId){
+ const files=[...(input.files||[])];
+ document.getElementById(targetId).innerHTML=files.map(f=>`<img src="${URL.createObjectURL(f)}" alt="پیش‌نمایش بسته">`).join("");
+}
+async function saveProduct(id){
+  if(!requireAdmin()) return;
+
+ const name=document.getElementById("a_name").value.trim();
+ const cat=document.getElementById("a_cat").value.trim();
+ const price=document.getElementById("a_price").value.trim();
+ if(!name||!cat||!price){toast("نام، دسته‌بندی و قیمت نمایشی را وارد کن.");return}
+ const old=id?getProduct(id):null;
+ const n=document.getElementById("a_numeric").value;
+ const lines=document.getElementById("a_packages").value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+ const oldPackages=old&&Array.isArray(old.packages)?old.packages:[];
+ const packageFiles=[...(document.getElementById("a_package_files").files||[])];
+ const packageImages=await Promise.all(packageFiles.map(readImageFile));
+ const packages=lines.map((line,i)=>{
+   const parts=line.split("|");
+   const size=(parts.shift()||"").trim();
+   const packPrice=parts.join("|").trim()||"استعلام قیمت";
+   return {size,price:packPrice,image:packageImages[i]||((oldPackages[i]&&oldPackages[i].image)||"")};
+ });
+ const imageFile=document.getElementById("a_image_file").files[0];
+ const image=imageFile?await readImageFile(imageFile):(old&&old.image)||"";
+ const data={name,cat,price,desc:document.getElementById("a_desc").value.trim(),usage:document.getElementById("a_usage").value.trim(),timing:document.getElementById("a_timing").value.trim(),tips:document.getElementById("a_tips").value.trim(),short:document.getElementById("a_short").value.trim()||name,image,packages,available:document.getElementById("a_available").checked,numericPrice:n===""?null:Number(n)};
+ if(id){const i=products.findIndex(x=>x.id===id);products[i]=Object.assign({},products[i],data)}
+ else{data.id=slugify(name)+"-"+Date.now();products.push(data)}
+ saveProducts();toast("محصول و تصاویر ذخیره شد.");adminPage();
+}
+function deleteProduct(id){
+  if(!requireAdmin()) return;
+
+ const p=getProduct(id);
+ if(p&&confirm("محصول «"+p.name+"» حذف شود؟")){products=products.filter(x=>x.id!==id);delete cart[id];saveProducts();saveCart();adminPage()}
+}
+function saveSiteSettings(){
+  if(!requireAdmin()) return;
+
+ settings.title=document.getElementById("s_title").value.trim()||defaultSettings.title;
+ settings.subtitle=document.getElementById("s_subtitle").value.trim()||defaultSettings.subtitle;
+ settings.phone=document.getElementById("s_phone").value.trim()||defaultSettings.phone;
+ settings.topText=document.getElementById("s_top").value.trim()||defaultSettings.topText;
+ settings.footerText=document.getElementById("s_footer").value.trim()||defaultSettings.footerText;
+ saveSettings();refreshSiteChrome();toast("اطلاعات سایت ذخیره شد.");home();
+}
+function exportData(){
+  if(!requireAdmin()) return;
+
+ const blob=new Blob([JSON.stringify({products,settings,orders},null,2)],{type:"application/json"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="vigol-kood-backup.json";a.click();URL.revokeObjectURL(a.href);
+}
+function importData(file){
+  if(!requireAdmin()) return;
+
+ if(!file)return;
+ const r=new FileReader();
+ r.onload=()=>{try{const d=JSON.parse(r.result);if(!Array.isArray(d.products)||!d.settings)throw new Error();products=d.products;settings=Object.assign({},defaultSettings,d.settings);orders=Array.isArray(d.orders)?d.orders:[];saveProducts();saveSettings();saveOrders();toast("پشتیبان وارد شد.");adminPage()}catch(e){toast("فایل پشتیبان معتبر نیست.")}};
+ r.readAsText(file);
+}
+function resetData(){
+  if(!requireAdmin()) return;
+
+ if(confirm("همه تغییرات محلی حذف و اطلاعات اولیه برگردانده شود؟")){products=JSON.parse(JSON.stringify(defaultProducts));settings=Object.assign({},defaultSettings);orders=[];saveProducts();saveSettings();saveOrders();adminPage()}
+}
+function filterProducts(v){
+ const term=v.trim().toLowerCase();
+ if(!term){catalog();return}
+ const list=products.filter(p=>(p.name+" "+p.cat+" "+p.short).toLowerCase().includes(term));
+ document.getElementById("app").innerHTML=`<section class="wrap"><div class="section-head"><h1>نتیجه جستجو</h1><span class="muted">${list.length} نتیجه</span></div><div class="products">${list.length?list.map(card).join(""):`<div class="noresult">محصولی با این عبارت پیدا نشد.</div>`}</div></section>`;
+}
+update();refreshSiteChrome();
+const adminBtn=document.getElementById("adminNavBtn"); if(adminBtn) adminBtn.style.display=adminUnlocked?"":"none";
+home();
+</script>
+</body>
+</html>
